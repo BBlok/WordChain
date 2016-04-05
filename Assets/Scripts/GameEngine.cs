@@ -6,21 +6,27 @@ using UnityEngine.UI;
 public class GameEngine : MonoBehaviour {
 
     public InputField wordInputField;
+	public TextAsset textAsset;
+	public float towerX = 2.0f;
+
+	public TowerChunk[] towerChunksToInstantiate;
     
-	// Use this for initialization
+/*  Unity API
+ *  ========================================================================================*/
 	void Start () {
 	    wordHistory = new List<string>();
+		dictionary = new WordDictionary(textAsset);
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-	//  Check if the Enter button is pressed (when submitted)
-	//  When it is, check the input field againmst the word history (matches the last word and not in the rest of the history)
-	//  if valid then we push into word history, make a block fall, and clear the field'
-	    if(Input.GetButtonDown("SubmitWord"))
+	    if(Input.GetButtonDown("SubmitWord")) {
 	        SubmitWord();
+			FocusOnInput();
+		}
 	}
-	
+
+/*  Public Methods
+ *  ========================================================================================*/
 	public void SubmitWord() {
 	    string word = wordInputField.text.ToLower();
 	    Debug.Log("");
@@ -29,14 +35,23 @@ public class GameEngine : MonoBehaviour {
 	    else
 	        Debug.Log("INVALID WORD");
 	}
+
+	public void FocusOnInput() {
+		wordInputField.Select();
+		wordInputField.ActivateInputField();
+	}
 	
 	public string LastWord() {
 	    return wordHistory.Count > 0 ? wordHistory[wordHistory.Count - 1] : null;
 	}
-	
+
+/*  Private Members
+ *  ========================================================================================*/
 	private List<string> wordHistory;
-	
-//  @TODO: We will need to implement a dictionary here at some point
+	private WordDictionary dictionary;
+
+/*  Private Methods
+ *  ========================================================================================*/
 	private bool IsValidWord(string word) {
 	    string lastWord = LastWord();
 	    if(lastWord == null)
@@ -45,17 +60,19 @@ public class GameEngine : MonoBehaviour {
 	        if(lastWord[lastWord.Length - 1] != word[0])
 	            return false;
 	        else
-	            return wordHistory.IndexOf(word) < 0 && IsInDictionary(word);
+	            return wordHistory.IndexOf(word) < 0 && dictionary.IsInDictionary(word);
 	    }
-	}
-	
-	private bool IsInDictionary(string word) {
-	    return true;
 	}
 	
 	private void CommitWordSubmission(string word) {
 	    wordHistory.Add(word);
-	//  Do the animation
+		GenerateTowerChunk(word);
 	    wordInputField.text = "";
+	}
+
+	private TowerChunk GenerateTowerChunk(string word) {
+		TowerChunk chunk = Instantiate(towerChunksToInstantiate[Random.Range(0, towerChunksToInstantiate.Length)], new Vector3(towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+		chunk.SetWord(word);
+		return chunk;
 	}
 }
