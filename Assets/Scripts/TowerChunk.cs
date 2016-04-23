@@ -12,6 +12,7 @@ public class TowerChunk : MonoBehaviour {
 
 	void Awake() {
 		this.text = transform.Find(TEXT_OBJECT_NAME).gameObject.GetComponent<TextMesh>();
+		this.spriteRenderer = GetComponent<SpriteRenderer>();
 		text.text = "";
 	}
 	
@@ -33,4 +34,5 @@ public class TowerChunk : MonoBehaviour {
 /*  Private Members
  *  ========================================================================================*/
 	private TextMesh text;
+	private SpriteRenderer spriteRenderer;
 }
