@@ -9,6 +9,7 @@ public class GameEngine : MonoBehaviour {
 	public TextAsset textAsset;
 	public float towerX = 2.0f;
 
+	public TowerChunk towerChunkToInstantiate;
 	public TowerChunk[] towerChunksToInstantiate;
     
 /*  Unity API
@@ -22,6 +23,11 @@ public class GameEngine : MonoBehaviour {
 	    if(Input.GetButtonDown("SubmitWord")) {
 	        SubmitWord();
 			FocusOnInput();
+		}
+
+		if (wordInputField.text.Length <= 1 && wordHistory.Count > 0) {
+			string lastWord = wordHistory [wordHistory.Count - 1];
+			wordInputField.text = lastWord.Substring(lastWord.Length - 1);
 		}
 	}
 
@@ -71,7 +77,8 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	private TowerChunk GenerateTowerChunk(string word) {
-		TowerChunk chunk = Instantiate(towerChunksToInstantiate[Random.Range(0, towerChunksToInstantiate.Length)], new Vector3(towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+		TowerChunk chunk = Instantiate (towerChunkToInstantiate, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+	//  TowerChunk chunk = Instantiate(towerChunksToInstantiate[Random.Range(0, towerChunksToInstantiate.Length)], new Vector3(towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
 		chunk.SetWord(word);
 		return chunk;
 	}
