@@ -112,12 +112,12 @@ public class GameEngine : MonoBehaviour {
 	private bool IsValidWord(string word) {
 	    string lastWord = LastWord();
 		if (lastWord == null) {
-			errorMessage = "That isn't a word!";
+			errorMessage = "That isn't \na word!";
 			return dictionary.IsInDictionary (word);
 		}
 	    else {
 			if (lastWord [lastWord.Length - 1] != word [0]) {
-				errorMessage = "Your word should begin in " + lastWord [lastWord.Length - 1];
+				errorMessage = "Your word \nshould \nbegin in " + lastWord [lastWord.Length - 1];
 				return false;
 			}
 			else {
