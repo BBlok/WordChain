@@ -9,17 +9,42 @@ public class GameEngine : MonoBehaviour {
 	public TextAsset textAsset;
 	public float towerX = 2.0f;
 
+	public int winNumber = 50;
+
 	public TowerChunk towerChunkToInstantiate;
+	public TowerChunk towerChunkToInstantiate2;
+	public TowerChunk towerChunkToInstantiate3;
+	public TowerChunk towerChunkToInstantiate4;
+	public TowerChunk towerChunkToInstantiate5;
+	public TowerChunk towerChunkToInstantiate6;
+	public TowerChunk towerChunkToInstantiate7;
+	public TowerChunk towerChunkToInstantiate8;
+	public TowerChunk towerBottom;
+	public TowerChunk towerTop;
+
 	public TowerChunk[] towerChunksToInstantiate;
     
+	public int chunkCounter;
+	public bool window = false;
+
+	private float selector;
+
+	AudioSource audio;
+
 /*  Unity API
  *  ========================================================================================*/
 	void Start () {
 	    wordHistory = new List<string>();
 		dictionary = new WordDictionary(textAsset);
+		audio = GetComponent<AudioSource> ();
 	}
 
 	void Update () {
+
+
+		chunkCounter = GameObject.FindGameObjectsWithTag("Tower").Length;
+
+
 	    if(Input.GetButtonDown("SubmitWord")) {
 	        SubmitWord();
 			FocusOnInput();
@@ -77,9 +102,43 @@ public class GameEngine : MonoBehaviour {
 	}
 
 	private TowerChunk GenerateTowerChunk(string word) {
-		TowerChunk chunk = Instantiate (towerChunkToInstantiate, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
-	//  TowerChunk chunk = Instantiate(towerChunksToInstantiate[Random.Range(0, towerChunksToInstantiate.Length)], new Vector3(towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+		
+		TowerChunk chunk;
+		selector = Random.Range (0.0f, 4.0f);
+
+		if (chunkCounter == 0)
+			chunk = Instantiate (towerBottom, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+		else if (chunkCounter == winNumber)
+			chunk = Instantiate (towerTop, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+		else if (selector >= 0 && selector < 1 && !window) {
+			chunk = Instantiate (towerChunkToInstantiate, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			window = true;	
+		} else if (selector >= 1 && selector < 2 && !window) {
+			chunk = Instantiate (towerChunkToInstantiate2, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			window = true;	
+		} else if (selector >= 2 && selector < 3 && !window) {
+			chunk = Instantiate (towerChunkToInstantiate3, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			window = true;	
+		} else if (selector >= 3 && selector < 4 && !window) {
+			chunk = Instantiate (towerChunkToInstantiate4, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			window = true;	
+		} else if (selector >= 0 && selector < 1 && window) {
+			chunk = Instantiate (towerChunkToInstantiate5, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			window = false;	
+		} else if (selector >= 1 && selector < 2 && window) {
+			chunk = Instantiate (towerChunkToInstantiate7, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			window = false;	
+		} else if (selector >= 2 && selector < 3 && window) {
+			chunk = Instantiate (towerChunkToInstantiate8, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			window = false;	
+		} else {
+			chunk = Instantiate (towerChunkToInstantiate8, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			window = false;
+		}
+
 		chunk.SetWord(word);
 		return chunk;
 	}
+	
+
 }

@@ -96,11 +96,7 @@ PlayerSettings:
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
-<<<<<<< HEAD
-  productGUID: 7f82c57e839682546b1597accc0a0ca3
-=======
-  productGUID: 78a412f1e0191dc4dac0e4ff35320825
->>>>>>> origin/master
+  productGUID: 4003fbd61806e11469b13edf71743656
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -415,36 +411,13 @@ PlayerSettings:
   XboxOnePersistentLocalStorageSize: 0
   intPropertyNames:
   - Standalone::ScriptingBackend
-<<<<<<< HEAD
-  - WebGL::ScriptingBackend
-  - WebGL::audioCompressionFormat
-  - WebGL::exceptionSupport
-  - WebGL::memorySize
   - WebPlayer::ScriptingBackend
   Standalone::ScriptingBackend: 0
-  WebGL::ScriptingBackend: 1
-  WebGL::audioCompressionFormat: 4
-  WebGL::exceptionSupport: 1
-  WebGL::memorySize: 256
-=======
-  - WebPlayer::ScriptingBackend
-  Standalone::ScriptingBackend: 0
->>>>>>> origin/master
   WebPlayer::ScriptingBackend: 0
   boolPropertyNames:
   - XboxOne::enus
   XboxOne::enus: 1
-<<<<<<< HEAD
-  stringPropertyNames:
-  - WebGL::emscriptenArgs
-  - WebGL::template
-  - additionalIl2CppArgs::additionalIl2CppArgs
-  WebGL::emscriptenArgs: 
-  WebGL::template: APPLICATION:Default
-  additionalIl2CppArgs::additionalIl2CppArgs: 
-=======
   stringPropertyNames: []
->>>>>>> origin/master
   cloudProjectId: 
   projectName: 
   organizationId: 
