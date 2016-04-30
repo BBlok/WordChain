@@ -33,15 +33,26 @@ public class GameEngine : MonoBehaviour {
 
 	AudioSource audio;
 
-/*  Unity API
- *  ========================================================================================*/
-	void Start () {
+    //public PlayerPrefsX savedWordHistory;
+    public List<string> savedWordHistory;
+    //public string[] savedWordHistory;
+    public string[] savedWordHistoryArr;
+    public ArrayList wordHistoryArray;
+
+    /*  Unity API
+     *  ========================================================================================*/
+    void Start () {
 	    wordHistory = new List<string>();
 		dictionary = new WordDictionary(textAsset);
 		audio = GetComponent<AudioSource> ();
-	}
+        savedWordHistory = new List<string>(5);
+        //savedWordHistory = new string[5];
+        savedWordHistoryArr = new string[5];
+        wordHistoryArray = new ArrayList();
+        //wordHistoryArray.Insert(0, "Hello");
+    }
 
-	void Update () {
+    void Update () {
 
 
 		chunkCounter = GameObject.FindGameObjectsWithTag("Tower").Length;
@@ -122,7 +133,46 @@ public class GameEngine : MonoBehaviour {
 	
 	private void CommitWordSubmission(string word) {
 	    wordHistory.Add(word);
-		GenerateTowerChunk(word);
+
+        //if(savedWordHistory.)
+        //savedWordHistory.Add(word);
+        //savedWordHistory.ToArray();
+
+        string wordNum;
+
+        /*for(int i = 0; i < savedWordHistory.Count-1; i++)
+        {
+            wordNum = "WORD" + (i+1);
+            PlayerPrefs.SetString(wordNum, (string)wordHistoryArray[i]);
+        }*/
+
+        if (wordHistoryArray.Count >= 5)
+        {
+            wordHistoryArray.RemoveAt(4);
+            //wordHistoryArray.Insert(0, word);
+            /*PlayerPrefs.SetString("WORD1", (string)wordHistoryArray[0]);
+            PlayerPrefs.SetString("WORD2", (string)wordHistoryArray[1]);
+            PlayerPrefs.SetString("WORD3", (string)wordHistoryArray[2]);
+            PlayerPrefs.SetString("WORD4", (string)wordHistoryArray[3]);*/
+            //PlayerPrefs.SetString("WORD5", (string)wordHistoryArray[4]);
+        }
+        wordHistoryArray.Insert(0, word);
+
+        for(int i = 0; i < wordHistoryArray.Count; i++)
+        {
+            wordNum = "WORD" + (i+1);
+            PlayerPrefs.SetString(wordNum, (string)wordHistoryArray[i]);
+        }
+
+        /*
+        PlayerPrefs.SetString("WORD1", (string)wordHistoryArray[0]);
+        PlayerPrefs.SetString("WORD2", (string)wordHistoryArray[1]);
+        PlayerPrefs.SetString("WORD3", (string)wordHistoryArray[2]);
+        PlayerPrefs.SetString("WORD4", (string)wordHistoryArray[3]);
+        PlayerPrefs.SetString("WORD5", (string)wordHistoryArray[4]);
+        */
+
+        GenerateTowerChunk(word);
 	    wordInputField.text = "";
 	}
 
