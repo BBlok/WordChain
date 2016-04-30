@@ -41,11 +41,15 @@ public class GameEngine : MonoBehaviour {
 		audio = GetComponent<AudioSource> ();
 	}
 
+	void Awake() {
+		//CommitWordSubmission ("trials");
+	}
+
 	void Update () {
 
 
-		chunkCounter = GameObject.FindGameObjectsWithTag("Tower").Length;
-
+		//chunkCounter = GameObject.FindGameObjectsWithTag("Tower").Length;
+		chunkCounter = NumOfWords; // redundant, but I'm not sure where chunkCounter is being used
 
 	    if(Input.GetButtonDown("SubmitWord")) {
 	        SubmitWord();
@@ -58,10 +62,14 @@ public class GameEngine : MonoBehaviour {
 		}
 	}
 
-/*  Public Methods
+/*  Access
  *  ========================================================================================*/
 	public string ErrorMessage {
 		get { return errorMessage; }
+	}
+
+	public int NumOfWords {
+		get { return wordHistory.Count; }
 	}
 
 /*  Public Methods
@@ -131,8 +139,10 @@ public class GameEngine : MonoBehaviour {
 		TowerChunk chunk;
 		selector = Random.Range (0.0f, 4.0f);
 
-		if (chunkCounter == 0)
+		if (chunkCounter == 0) {
 			chunk = Instantiate (towerBottom, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
+			chunk.frozen = true;
+		}
 		else if (chunkCounter == winNumber)
 			chunk = Instantiate (towerTop, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 		else if (selector >= 0 && selector < 1 && !window) {
