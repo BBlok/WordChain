@@ -24,6 +24,8 @@ public class GameEngine : MonoBehaviour {
 
 	public TowerChunk[] towerChunksToInstantiate;
     
+	public float zValue = -3.0f;
+
 	public int chunkCounter;
 	public bool window = false;
 
@@ -107,32 +109,32 @@ public class GameEngine : MonoBehaviour {
 		selector = Random.Range (0.0f, 4.0f);
 
 		if (chunkCounter == 0)
-			chunk = Instantiate (towerBottom, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerBottom, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 		else if (chunkCounter == winNumber)
-			chunk = Instantiate (towerTop, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerTop, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 		else if (selector >= 0 && selector < 1 && !window) {
-			chunk = Instantiate (towerChunkToInstantiate, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerChunkToInstantiate, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 			window = true;	
 		} else if (selector >= 1 && selector < 2 && !window) {
-			chunk = Instantiate (towerChunkToInstantiate2, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerChunkToInstantiate2, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 			window = true;	
 		} else if (selector >= 2 && selector < 3 && !window) {
-			chunk = Instantiate (towerChunkToInstantiate3, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerChunkToInstantiate3, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 			window = true;	
 		} else if (selector >= 3 && selector < 4 && !window) {
-			chunk = Instantiate (towerChunkToInstantiate4, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerChunkToInstantiate4, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 			window = true;	
 		} else if (selector >= 0 && selector < 1 && window) {
-			chunk = Instantiate (towerChunkToInstantiate5, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerChunkToInstantiate5, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 			window = false;	
 		} else if (selector >= 1 && selector < 2 && window) {
-			chunk = Instantiate (towerChunkToInstantiate7, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerChunkToInstantiate7, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 			window = false;	
 		} else if (selector >= 2 && selector < 3 && window) {
-			chunk = Instantiate (towerChunkToInstantiate8, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerChunkToInstantiate8, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 			window = false;	
 		} else {
-			chunk = Instantiate (towerChunkToInstantiate8, new Vector3 (towerX, Camera.main.transform.position.y + 10, 0), Quaternion.identity) as TowerChunk;
+			chunk = Instantiate (towerChunkToInstantiate8, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 			window = false;
 		}
 
