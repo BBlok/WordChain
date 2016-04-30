@@ -79,15 +79,18 @@ public class GameEngine : MonoBehaviour {
 	public void SubmitWord() {
 	    string word = wordInputField.text.ToLower();
 	    Debug.Log("");
-		if (IsValidWord (word))
-			CommitWordSubmission(word);
+		if (IsValidWord (word)) {
+			CommitWordSubmission (word);
+			window = !window;
+		}
+		
 		else {
 			TowerChunk chunk = GenerateTowerChunk(word);
 			airBannerScript planeInstance;
 			chunk.hasValidWord = false;
 			chunk.transform.position = new Vector3 (chunk.transform.position.x - 5, chunk.transform.position.y, chunk.transform.position.z);
 			Debug.Log (ErrorMessage);
-			planeInstance = Instantiate (plane, new Vector3 (0.0f, Camera.main.transform.position.y + 1, zValue), Quaternion.identity) as airBannerScript;
+			planeInstance = Instantiate (plane, new Vector3 (0.0f, Camera.main.transform.position.y + 1, zValue + 1), Quaternion.identity) as airBannerScript;
 			planeInstance.SetWord(ErrorMessage);
 		}
 	}
@@ -122,11 +125,11 @@ public class GameEngine : MonoBehaviour {
 			}
 			else {
 				if (wordHistory.IndexOf (word) >= 0) {
-					errorMessage = "You already used that word!";
+					errorMessage = "You already \nused \nthat word!";
 					return false;
 				}
 				else {
-					errorMessage = "That isn't a word!";
+					errorMessage = "That isn't \na word!";
 					return dictionary.IsInDictionary (word);
 				}
 			}
@@ -152,28 +155,28 @@ public class GameEngine : MonoBehaviour {
 			chunk = Instantiate (towerTop, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 		else if (selector >= 0 && selector < 1 && !window) {
 			chunk = Instantiate (towerChunkToInstantiate, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
-			window = true;	
+			//window = true;	
 		} else if (selector >= 1 && selector < 2 && !window) {
 			chunk = Instantiate (towerChunkToInstantiate2, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
-			window = true;	
+			//window = true;	
 		} else if (selector >= 2 && selector < 3 && !window) {
 			chunk = Instantiate (towerChunkToInstantiate3, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
-			window = true;	
+			//window = true;	
 		} else if (selector >= 3 && selector < 4 && !window) {
 			chunk = Instantiate (towerChunkToInstantiate4, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
-			window = true;	
+			//window = true;	
 		} else if (selector >= 0 && selector < 1 && window) {
 			chunk = Instantiate (towerChunkToInstantiate5, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
-			window = false;	
+			//window = false;	
 		} else if (selector >= 1 && selector < 2 && window) {
 			chunk = Instantiate (towerChunkToInstantiate7, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
-			window = false;	
+			//window = false;	
 		} else if (selector >= 2 && selector < 3 && window) {
 			chunk = Instantiate (towerChunkToInstantiate8, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
-			window = false;	
+			//window = false;	
 		} else {
 			chunk = Instantiate (towerChunkToInstantiate8, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
-			window = false;
+			//window = false;
 		}
 
 		chunk.SetWord(word);
