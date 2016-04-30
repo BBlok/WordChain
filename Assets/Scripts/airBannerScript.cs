@@ -1,43 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TowerChunk : MonoBehaviour {
+public class airBannerScript : MonoBehaviour {
 	private static string TEXT_OBJECT_NAME = "Text";
 	public bool hasValidWord = true;
 
-/*  Unity API
+	/*  Unity API
  *  ========================================================================================*/
 	void Start () {
-		frozen = false;
+
 	}
 
 	void Awake() {
 		this.text = transform.Find(TEXT_OBJECT_NAME).gameObject.GetComponent<TextMesh>();
 		this.spriteRenderer = GetComponent<SpriteRenderer>();
 		this.rb = GetComponent<Rigidbody2D>();
+		this.rectransform = GetComponent<RectTransform> ();
 		text.text = "";
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.y < -10)
+		if ( rectransform.position.x >= GetComponent<planeScript>().flightdistance - 10.0f)
 			DestroyObject(gameObject);
 	}
+		
 
-	void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.collider.gameObject.tag == "Tower" && !frozen && hasValidWord) {
-			frozen = true;
-			rb.constraints = RigidbodyConstraints2D.FreezeAll;
-		}
-	}
-
-	void OnCollisionStay2D(Collision2D collision) {
-		if (collision.collider.gameObject.tag == "Tower" && !frozen && !hasValidWord) {
-			GetComponent<BoxCollider2D> ().enabled = false;
-		}
-	}
-
-/*  Public Methods
+	/*  Public Methods
  *  ========================================================================================*/
 	public void SetWord(string word) {
 		this.text.text = word;
@@ -47,10 +36,10 @@ public class TowerChunk : MonoBehaviour {
 		return text.text;
 	}
 
-/*  Private Members
+	/*  Private Members
  *  ========================================================================================*/
 	private TextMesh text;
 	private SpriteRenderer spriteRenderer;
+	private RectTransform rectransform;
 	private Rigidbody2D rb;
-	public bool frozen;
 }

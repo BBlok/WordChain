@@ -22,6 +22,8 @@ public class GameEngine : MonoBehaviour {
 	public TowerChunk towerBottom;
 	public TowerChunk towerTop;
 
+	public airBannerScript plane;
+
 	public TowerChunk[] towerChunksToInstantiate;
     
 	public float zValue = -3.0f;
@@ -73,9 +75,12 @@ public class GameEngine : MonoBehaviour {
 			CommitWordSubmission(word);
 		else {
 			TowerChunk chunk = GenerateTowerChunk(word);
+			airBannerScript planeInstance;
 			chunk.hasValidWord = false;
-			chunk.transform.position = new Vector3 (chunk.transform.position.x - 5, chunk.transform.position.y, chunk.transform.position.z);;
+			chunk.transform.position = new Vector3 (chunk.transform.position.x - 5, chunk.transform.position.y, chunk.transform.position.z);
 			Debug.Log (ErrorMessage);
+			planeInstance = Instantiate (plane, new Vector3 (0.0f, Camera.main.transform.position.y + 1, zValue), Quaternion.identity) as airBannerScript;
+			planeInstance.SetWord(ErrorMessage);
 		}
 	}
 
@@ -131,8 +136,10 @@ public class GameEngine : MonoBehaviour {
 		TowerChunk chunk;
 		selector = Random.Range (0.0f, 4.0f);
 
-		if (chunkCounter == 0)
+		if (chunkCounter == 0) {
 			chunk = Instantiate (towerBottom, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
+			chunk.frozen = true;
+		}
 		else if (chunkCounter == winNumber)
 			chunk = Instantiate (towerTop, new Vector3 (towerX, Camera.main.transform.position.y + 10, zValue), Quaternion.identity) as TowerChunk;
 		else if (selector >= 0 && selector < 1 && !window) {

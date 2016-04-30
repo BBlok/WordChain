@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21255580}
   - 50: {fileID: 5064508}
   - 114: {fileID: 11473336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: nube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.83, y: 2.44, z: 0}
+  m_LocalPosition: {x: -2.45, y: 2.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceScroll: 1.5
-  speed: 0.2
+  speed: 0.3
 --- !u!212 &21255580
 SpriteRenderer:
   m_ObjectHideFlags: 1
