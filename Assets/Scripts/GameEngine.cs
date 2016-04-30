@@ -26,7 +26,7 @@ public class GameEngine : MonoBehaviour {
     
 	public float zValue = -3.0f;
 
-	public int chunkCounter;
+	public int chunkCounter = 0;
 	public bool window = false;
 
 	private float selector;
@@ -60,13 +60,23 @@ public class GameEngine : MonoBehaviour {
 
 /*  Public Methods
  *  ========================================================================================*/
+	public string ErrorMessage {
+		get { return errorMessage; }
+	}
+
+/*  Public Methods
+ *  ========================================================================================*/
 	public void SubmitWord() {
 	    string word = wordInputField.text.ToLower();
 	    Debug.Log("");
-	    if(IsValidWord(word))
-	        CommitWordSubmission(word);
-	    else
-	        Debug.Log("INVALID WORD");
+		if (IsValidWord (word))
+			CommitWordSubmission(word);
+		else {
+			TowerChunk chunk = GenerateTowerChunk(word);
+			chunk.hasValidWord = false;
+			chunk.transform.position = new Vector3 (chunk.transform.position.x - 5, chunk.transform.position.y, chunk.transform.position.z);;
+			Debug.Log (ErrorMessage);
+		}
 	}
 
 	public void FocusOnInput() {
@@ -82,18 +92,31 @@ public class GameEngine : MonoBehaviour {
  *  ========================================================================================*/
 	private List<string> wordHistory;
 	private WordDictionary dictionary;
+	private string errorMessage;
 
 /*  Private Methods
  *  ========================================================================================*/
 	private bool IsValidWord(string word) {
 	    string lastWord = LastWord();
-	    if(lastWord == null)
-	        return true;
+		if (lastWord == null) {
+			errorMessage = "That isn't a word!";
+			return dictionary.IsInDictionary (word);
+		}
 	    else {
-	        if(lastWord[lastWord.Length - 1] != word[0])
-	            return false;
-	        else
-	            return wordHistory.IndexOf(word) < 0 && dictionary.IsInDictionary(word);
+			if (lastWord [lastWord.Length - 1] != word [0]) {
+				errorMessage = "Your word should begin in " + lastWord [lastWord.Length - 1];
+				return false;
+			}
+			else {
+				if (wordHistory.IndexOf (word) >= 0) {
+					errorMessage = "You already used that word!";
+					return false;
+				}
+				else {
+					errorMessage = "That isn't a word!";
+					return dictionary.IsInDictionary (word);
+				}
+			}
 	    }
 	}
 	

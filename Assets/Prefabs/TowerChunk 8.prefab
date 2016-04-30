@@ -113,7 +113,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 143440}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2c06b6023e5c58a4b9ba420997477b17, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: -0.000313282, y: 0.00031352043}
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55af884a575a9049a8294225b852284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasValidWord: 1
 --- !u!212 &21259022
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -202,7 +203,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 2c06b6023e5c58a4b9ba420997477b17, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 143440}
