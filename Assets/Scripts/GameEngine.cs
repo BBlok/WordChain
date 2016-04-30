@@ -43,11 +43,15 @@ public class GameEngine : MonoBehaviour {
 		audio = GetComponent<AudioSource> ();
 	}
 
+	void Awake() {
+		//CommitWordSubmission ("trials");
+	}
+
 	void Update () {
 
 
-		chunkCounter = GameObject.FindGameObjectsWithTag("Tower").Length;
-
+		//chunkCounter = GameObject.FindGameObjectsWithTag("Tower").Length;
+		chunkCounter = NumOfWords; // redundant, but I'm not sure where chunkCounter is being used
 
 	    if(Input.GetButtonDown("SubmitWord")) {
 	        SubmitWord();
@@ -60,10 +64,14 @@ public class GameEngine : MonoBehaviour {
 		}
 	}
 
-/*  Public Methods
+/*  Access
  *  ========================================================================================*/
 	public string ErrorMessage {
 		get { return errorMessage; }
+	}
+
+	public int NumOfWords {
+		get { return wordHistory.Count; }
 	}
 
 /*  Public Methods

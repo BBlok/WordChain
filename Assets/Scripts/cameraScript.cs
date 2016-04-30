@@ -24,6 +24,8 @@ public class cameraScript : MonoBehaviour {
 	public AudioClip winClip;
 	public AudioClip music;
 
+	public GameEngine engine;
+
 
 
 
@@ -42,8 +44,8 @@ public class cameraScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Camera.current.transform.position(new Vector3 (0.0f,5.0f,0.0f));
-		newCount = GameObject.FindGameObjectsWithTag("Tower").Length;
-
+		//newCount = GameObject.FindGameObjectsWithTag("Tower").Length;
+		newCount = engine.NumOfWords;
 
 
 		if (winCondition == true) {

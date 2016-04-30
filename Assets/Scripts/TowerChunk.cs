@@ -8,7 +8,7 @@ public class TowerChunk : MonoBehaviour {
 /*  Unity API
  *  ========================================================================================*/
 	void Start () {
-		frozen = false;
+		//frozen = false;
 	}
 
 	void Awake() {
@@ -27,13 +27,19 @@ public class TowerChunk : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.collider.gameObject.tag == "Tower" && !frozen && hasValidWord) {
 			frozen = true;
+			BoxCollider2D col = GetComponent<BoxCollider2D>();
+			transform.position = new Vector3 (
+				transform.position.x, 
+				collision.collider.bounds.max.y + (col.bounds.max.y - col.bounds.min.y) / 2.0f,
+				transform.position.z
+			);
 			rb.constraints = RigidbodyConstraints2D.FreezeAll;
 		}
 	}
 
 	void OnCollisionStay2D(Collision2D collision) {
 		if (collision.collider.gameObject.tag == "Tower" && !frozen && !hasValidWord) {
-			GetComponent<BoxCollider2D> ().enabled = false;
+			GetComponent<BoxCollider2D>().enabled = false;
 		}
 	}
 
