@@ -49,8 +49,8 @@ public class cameraScript : MonoBehaviour {
 
 
 		if (winCondition == true) {
-			sonido.clip = winClip;
-			sonido.Play ();
+			//sonido.clip = winClip;
+			//sonido.Play ();
 			Debug.Log("YOU WIN!");
 		}
 

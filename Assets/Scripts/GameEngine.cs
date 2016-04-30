@@ -37,14 +37,14 @@ public class GameEngine : MonoBehaviour {
 
 /*  Unity API
  *  ========================================================================================*/
-	void Start () {
-	    wordHistory = new List<string>();
-		dictionary = new WordDictionary(textAsset);
-		audio = GetComponent<AudioSource> ();
-	}
+	void Start () {}
 
 	void Awake() {
-		//CommitWordSubmission ("trials");
+		wordHistory = new List<string>();
+		dictionary = new WordDictionary(textAsset);
+		audio = GetComponent<AudioSource> ();
+		wordHistory.Add("word");
+		GenerateTowerChunk("word");
 	}
 
 	void Update () {
