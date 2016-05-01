@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EricMainMenu.unity
   - enabled: 1
+    path: Assets/Scenes/WilliamCameraMovement.unity
+  - enabled: 0
     path: Assets/Scenes/WilliamV2.unity
   - enabled: 1
     path: Assets/Scenes/WordHistory.unity
