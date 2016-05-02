@@ -41,8 +41,8 @@ public class GameEngine : MonoBehaviour {
     public string[] savedWordHistoryArr;
     public ArrayList wordHistoryArray;
 
-    /*  Unity API
-     *  ========================================================================================*/
+/*  Unity API
+ *  ========================================================================================*/
     void Start () {
         savedWordHistory = new List<string>(5);
         //savedWordHistory = new string[5];
@@ -55,8 +55,11 @@ public class GameEngine : MonoBehaviour {
 		wordHistory = new List<string>();
 		dictionary = new WordDictionary(textAsset);
 		audio = GetComponent<AudioSource> ();
-		wordHistory.Add("word");
-		GenerateTowerChunk("word");
+		hinter = GetComponent<WordHinter>();
+
+		string w = dictionary.RandomWord();
+		wordHistory.Add(w);
+		GenerateTowerChunk(w);
 	}
 
 	void Update () {
@@ -121,6 +124,7 @@ public class GameEngine : MonoBehaviour {
 	private List<string> wordHistory;
 	private WordDictionary dictionary;
 	private string errorMessage;
+	private WordHinter hinter;
 
 /*  Private Methods
  *  ========================================================================================*/
@@ -148,7 +152,7 @@ public class GameEngine : MonoBehaviour {
 	    }
 	}
 	
-	private void CommitWordSubmission(string word) {
+	public void CommitWordSubmission(string word) {
 	    wordHistory.Add(word);
 
         string wordNum;

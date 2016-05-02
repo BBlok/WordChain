@@ -19,6 +19,22 @@ public class WordDictionary {
 		return wordList.IndexOf(word) >= 0;
 	}
 
+	public string RandomWord() {
+		return wordList[UnityEngine.Random.Range(0, wordList.Count)];
+	}
+
+	public string RandomWordThatStartsWith(string c) {
+		List<string> words = new List<string>();
+		foreach(string word in wordList) {
+			if(word.Length > 0 && word[0] == c[0])
+				words.Add (word);
+		}
+		if(words.Count > 0)
+			return words[UnityEngine.Random.Range(0, words.Count)];
+		else
+			return "";
+	}
+
 /*  Private Members
  *  ========================================================================================*/
 	private TextAsset textAsset;
