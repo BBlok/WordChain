@@ -2902,6 +2902,7 @@ MonoBehaviour:
   towerBottom: {fileID: 11463010, guid: 1db9668c235078341ab0e33a1c49b5bd, type: 2}
   towerTop: {fileID: 11418188, guid: 7eaa4112d9592ae41aa00385f732b000, type: 2}
   plane: {fileID: 11423812, guid: 2fa3b55397a3aeb4f885d9ce915c664d, type: 2}
+  ufoBanner: {fileID: 11471410, guid: e27e2b2713d25c64a8e921cde38e1d43, type: 2}
   towerChunksToInstantiate:
   - {fileID: 0}
   - {fileID: 0}
