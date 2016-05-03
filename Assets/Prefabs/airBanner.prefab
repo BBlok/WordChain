@@ -145,7 +145,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   xSpeed: 2
   ySpeed: 0
-  flightdistance: 58.51
+  flightdistance: 58.04
 --- !u!114 &11423812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +234,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.x
       value: -1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: flightdistance
+      value: 58.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

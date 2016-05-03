@@ -105,7 +105,7 @@ public class GameEngine : MonoBehaviour {
 			chunk.hasValidWord = false;
 			chunk.transform.position = new Vector3 (chunk.transform.position.x - 5, chunk.transform.position.y, chunk.transform.position.z);
 			Debug.Log (ErrorMessage);
-			planeInstance = Instantiate (plane, new Vector3 (0.0f, Camera.main.transform.position.y + 1, zValue + 1), Quaternion.identity) as airBannerScript;
+			planeInstance = Instantiate (plane, new Vector3 (-15.0f, Camera.main.transform.position.y + 1, zValue + 1), Quaternion.identity) as airBannerScript;
 			planeInstance.SetWord(ErrorMessage);
 		}
 	}

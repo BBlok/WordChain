@@ -21,7 +21,7 @@ public class airBannerScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if ( rectransform.position.x >= GetComponent<planeScript>().flightdistance - 10.0f)
+		if ( rectransform.position.x >= GetComponent<planeScript>().flightdistance - 20.0f)
 			DestroyObject(gameObject);
 	}
 		
