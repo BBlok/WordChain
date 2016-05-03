@@ -4,7 +4,7 @@ using System.Collections;
 //  THIS SCRIPT ACTUALLY GOES TO THE RIGHT.  SORRY.	
 public class MoveLeft : MonoBehaviour {
 
-	public float vel = 3.0f;
+	public float vel = 5.0f;
 
 	void Awake() {
 		GetComponent<Rigidbody2D>().velocity = new Vector3(vel, 0, 0);

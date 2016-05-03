@@ -120,6 +120,10 @@ public class GameEngine : MonoBehaviour {
 	    return wordHistory.Count > 0 ? wordHistory[wordHistory.Count - 1] : null;
 	}
 
+	public bool IsInHistory(string word) {
+		return wordHistory.IndexOf(word) >= 0;
+	}
+
 /*  Private Members
  *  ========================================================================================*/
 	private List<string> wordHistory;
@@ -141,7 +145,7 @@ public class GameEngine : MonoBehaviour {
 				return false;
 			}
 			else {
-				if (wordHistory.IndexOf (word) >= 0) {
+				if (IsInHistory(word)) {
 					errorMessage = "You already \nused \nthat word!";
 					return false;
 				}
@@ -184,6 +188,7 @@ public class GameEngine : MonoBehaviour {
 
         GenerateTowerChunk(word);
 	    wordInputField.text = "";
+		hinter.Reset();
 	}
 
 	private TowerChunk GenerateTowerChunk(string word) {

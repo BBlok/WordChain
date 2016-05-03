@@ -22,7 +22,7 @@ public class WordHinter : MonoBehaviour {
 	void Update () {
 		++counter;
 		if(counter >= 600) {
-			SuggestWord(engine.LastWord().Substring(0, 1));
+			SuggestWord(engine.LastWord().Substring(engine.LastWord().Length - 1, 1));
 			counter = -999999999;
 		}
 	}
@@ -31,12 +31,13 @@ public class WordHinter : MonoBehaviour {
  *  ========================================================================================*/
 	public string SuggestWord(string letter) {
 		string word = dictionary.RandomWordThatStartsWith(letter);
-		Debug.Log (word);
-		PicturePlane p = Instantiate(planeToInstantiate, new Vector3(-15, Camera.main.transform.position.y, 0), Quaternion.identity) as PicturePlane;
-		if(!p.LoadImage(word)) {
-			DestroyObject(p.gameObject);
-			Debug.Log ("FAIL");
+		if(engine.IsInHistory(word)) {
+			Reset ();
+			return "";
 		}
+		PicturePlane p = Instantiate(planeToInstantiate, new Vector3(-15, Camera.main.transform.position.y, 0), Quaternion.identity) as PicturePlane;
+		if(!p.LoadImage(word))
+			DestroyObject(p.gameObject);
 		return word;
 	}
 
