@@ -27,15 +27,10 @@ public class cameraScript : MonoBehaviour {
 	public GameEngine engine;
 
 
-
-
-
-
-
 	// Use this for initialization
 	void Start () {
 
-		AudioSource sonido = GetComponent<AudioSource>();
+		sonido = GetComponent<AudioSource>();
 
 		//sonido.clip = winClip;
 		//sonido.Play ();
@@ -47,20 +42,21 @@ public class cameraScript : MonoBehaviour {
 		//newCount = GameObject.FindGameObjectsWithTag("Tower").Length;
 		newCount = engine.NumOfWords;
 
-
-		if (winCondition == true) {
-			//sonido.clip = winClip;
-			//sonido.Play ();
-			Debug.Log("YOU WIN!");
-		}
-
-
 		if (newCount == winNumber) {
 			winCondition = true;
 
 		}
 
+		if (winCondition == true) {
 
+			if (sonido.clip != winClip) {
+				sonido.clip = winClip;
+				sonido.loop = false;
+				sonido.Play ();
+			}
+			Debug.Log("YOU WIN!");
+		}
+			
 		if (newCount - prevCount == period && winCondition == false) {
 
 		
