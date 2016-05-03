@@ -21,14 +21,10 @@ public class GameEngine : MonoBehaviour {
 	public TowerChunk towerChunkToInstantiate8;
 	public TowerChunk towerBottom;
 	public TowerChunk towerTop;
-
 	public airBannerScript plane;
 	public airBannerScript ufoBanner;
-
 	public TowerChunk[] towerChunksToInstantiate;
-    
 	public float zValue = -3.0f;
-
 	public int chunkCounter = 0;
 	public bool window = false;
 

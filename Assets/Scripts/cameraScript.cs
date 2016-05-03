@@ -26,6 +26,8 @@ public class cameraScript : MonoBehaviour {
 
 	public GameEngine engine;
 
+	public GameObject winBanner;
+
 
 	// Use this for initialization
 	void Start () {
@@ -53,8 +55,10 @@ public class cameraScript : MonoBehaviour {
 				sonido.clip = winClip;
 				sonido.loop = false;
 				sonido.Play ();
+				winBanner winBannerInstance;
+				winBannerInstance = Instantiate(winBanner, new Vector3 (Camera.main.transform.position.x - 10.0f, Camera.main.transform.position.y + 1,-9.0f), Quaternion.identity) as winBanner;
 			}
-			Debug.Log("YOU WIN!");
+
 		}
 			
 		if (newCount - prevCount == period && winCondition == false) {
