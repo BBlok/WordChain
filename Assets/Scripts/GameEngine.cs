@@ -100,7 +100,7 @@ public class GameEngine : MonoBehaviour {
 			TowerChunk chunk = GenerateTowerChunk(word);
 			airBannerScript planeInstance;
 			chunk.hasValidWord = false;
-			chunk.transform.position = new Vector3 (chunk.transform.position.x - 5, chunk.transform.position.y, chunk.transform.position.z);
+			chunk.transform.position = new Vector3 (chunk.transform.position.x - 5.0f, chunk.transform.position.y, chunk.transform.position.z);
 			Debug.Log (ErrorMessage);
 			if (Camera.main.transform.position.y >= 40.0f) {	//spawn UFO banner, else spawn plane
 				planeInstance = Instantiate (ufoBanner, new Vector3 (-15.0f, Camera.main.transform.position.y + 1, zValue + 1), Quaternion.identity) as airBannerScript;
